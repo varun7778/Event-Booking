@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+  	<meta name="author" content="Prabhav Varambally">
+		<title>Event Booking System</title>
+		<link rel="stylesheet" href="./static/css/style.css">
+		<style type="text/css">
+		body
+{
+	margin: 0;
+	padding: 0;
+	background: url("/static/bg.jpg");
+	/* background: #35424a; */
+	background-size: cover;
+	font-family: sans-serif;
+}
+.loginBox
+{
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 350px;
+	height: 420px;
+	padding: 80px 40px;
+	box-sizing: border-box;
+	background: rgba(0,0,0,.5);
+}
+.user
+{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	overflow: hidden;
+	position: absolute;
+	top: calc(-100px/2);
+	left: calc(50% - 50px);
+}
+h2
+{
+	margin: 0;
+	padding: 0 0 20px;
+	color: #efed40;
+	text-align: center;
+}
+.loginBox p
+{
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	color: #fff;
+	margin-top: 10px;
+}
+.loginBox input
+{
+	width: 100%;
+	margin-bottom: 20px;
+}
+.loginBox input[type="text"],
+.loginBox input[type="password"]
+{
+	border: none;
+	border-bottom: 1px solid #fff;
+	background: transparent;
+	outline: none;
+	height: 40px;
+	color: #fff;
+	font-size: 16px;
+}
+::placeholder
+{
+	color: rgba(255,255,255,.5);
+}
+.loginBox input[type="submit"]
+{
+	border: none;
+	outline: none;
+	height: 40px;
+	color: #fff;
+	font-size: 16px;
+	background: #F45B69;
+	cursor: pointer;
+	border-radius: 20px;
+}
+.loginBox input[type="submit"]:hover
+{
+	background: #E4FDE1;
+	color: #262626;
+}
+.loginBox a
+{
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
+}
+header{
+  background:#35424a;
+  color:#ffffff;
+  padding-top:30px;
+  min-height:70px;
+  border-bottom:#e8491d 3px solid;
+}
+.message{
+  background:#FE938C;
+  color:#ffffff;
+
+  min-height:10px;
+  border-radius: 30px;
+	align-items: flex-start;
+	text-align: center;
+}
+		</style>
+
+	</head>
+	<body>
+		<header>
+      <div class="container">
+        <div id="branding">
+          <h1><span class="highlight">Event</span> Booking System</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li  class="current"><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+		<div class="loginBox">
+			<img src="/static/user.png" class="user">
+			<h2>Log In Here</h2>
+			{% with messages = get_flashed_messages()%}
+				{%if messages%}
+					{% for message in messages%}
+					<div class="message">
+					{{message}}
+					</div>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+			<form action="/landing" method="post">
+				<p>Email</p>
+				<input type="text" name="email" placeholder="Enter Email">
+				<p>Password</p>
+				<input type="password" name="password" placeholder="••••••">
+				<input type="submit" name="" value="Sign In">
+			</form>
+		</div>
+	</body>
+</html>
