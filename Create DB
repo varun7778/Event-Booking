@@ -1,0 +1,156 @@
+CREATE TABLE suser (
+id INT NOT NULL,
+username VARCHAR(30) NOT NULL,
+email VARCHAR(50) NOT NULL,
+password VARCHAR(50) NOT NULL,
+PRIMARY KEY (id) );
+
+
+CREATE TABLE room (
+room_id INT NOT NULL,
+status INT,
+building VARCHAR(10) NOT NULL,
+PRIMARY KEY (room_id));
+
+
+CREATE TABLE booking (
+booking_id INT,
+room_id INT NOT NULL,
+id INT,
+event_name VARCHAR(50) NOT NULL,
+PRIMARY KEY (booking_id),
+FOREIGN KEY (id) REFERENCES suser(id),
+FOREIGN KEY (room_id) REFERENCES room(room_id));
+
+
+CREATE TABLE perms(
+perm_id INT,
+name varchar(100) NOT NULL,
+reg INT NOT NULL,
+booking_id INT,
+id INT,
+cgpa NUMERIC(4,2) NOT NULL,
+timing INT NOT NULL,
+start_date date NOT NULL,
+end_date date NOT NULL, 
+gatepass int,
+PRIMARY KEY (perm_id),
+FOREIGN KEY(id) REFERENCES suser(id),
+FOREIGN KEY(booking_id) REFERENCES booking(booking_id));
+
+
+CREATE TABLE complaints(
+complaint_id INT,
+complaint varchar(2000) NOT NULL,
+id INT,
+PRIMARY KEY (complaint_id),
+FOREIGN KEY (id) REFERENCES suser(id));
+
+CREATE TABLE splreq (
+splreq_id INT,
+name varchar(200) NOT NULL,
+comments varchar(2000),
+id INT,
+PRIMARY KEY (splreq_id),
+FOREIGN KEY (id) REFERENCES suser(id));
+
+
+CREATE TABLE progress (
+booking_id INT,
+aid int,
+council INT NOT NULL,
+director INT NOT NULL,
+security INT NOT NULL,
+perm INT NOT NULL,
+PRIMARY KEY (booking_id),
+FOREIGN KEY (booking_id) REFERENCES booking(booking_id),
+FOREIGN KEY (aid) REFERENCES admin(id));
+
+CREATE TABLE admin (
+id INT,
+username VARCHAR(30) NOT NULL,
+email VARCHAR(50) NOT NULL,
+password VARCHAR(50) NOT NULL,
+role VARCHAR(20) NOT NULL,
+PRIMARY KEY (id));
+
+
+CREATE TABLE ruser (
+rid INT,
+username VARCHAR(30) NOT NULL,
+email VARCHAR(50) NOT NULL,
+password VARCHAR(50) NOT NULL,
+role VARCHAR(20) NOT NULL,
+perms_id INT,
+PRIMARY KEY (rid),
+FOREIGN KEY (perms_id) REFERENCES perms(perm_id));
+
+
+CREATE TABLE logisreq (
+sid INT,
+projector INT,
+marker INT,
+speaker INT,
+PRIMARY KEY (sid),
+FOREIGN KEY (sid) REFERENCES suser(id));
+
+
+CREATE TABLE logisavail (
+projector INT,
+marker INT,
+speaker INT,
+PRIMARY KEY (projector,marker,speaker));
+
+CREATE TABLE prog_check (
+booking_id INT,
+room_id INT,
+PRIMARY KEY (booking_id,room_id),
+FOREIGN KEY (booking_id) REFERENCES booking(booking_id),
+FOREIGN KEY (room_id) REFERENCES room(room_id));
+
+
+CREATE TABLE req_grant (
+user_id INT,
+req_id INT,
+PRIMARY KEY (user_id,req_id),
+FOREIGN KEY (user_id) REFERENCES suser(id),
+FOREIGN KEY (req_id) REFERENCES splreq(splreq_id));
+
+*************************************************************************************
+
+CREATE TABLE bookappr (
+booking_id INT,
+SC INT,
+CW INT,
+SO INT,
+director INT,
+PRIMARY KEY (booking_id),
+FOREIGN KEY (booking_id) REFERENCES booking(booking_id));
+
+CREATE TABLE logisappr (
+sid INT,
+SC INT,
+CW INT,
+SO INT,
+director INT,
+PRIMARY KEY (sid),
+FOREIGN KEY (sid) REFERENCES logisreq(sid));
+
+insert into bookappr values(1000,0,0,0,0);
+insert into bookappr values(1001,0,0,0,0);
+
+insert into logisappr values(100,0,0,0,0);
+insert into logisappr values(101,0,0,0,0);
+
+
+CREATE TABLE splappr (
+sid INT,
+SC INT,
+CW INT,
+SO INT,
+director INT,
+PRIMARY KEY (sid),
+FOREIGN KEY (sid) REFERENCES splreq(splreq_id));
+
+insert into splappr values(80,0,0,0,0);
+insert into splappr values(81,0,0,0,0);

@@ -1,0 +1,63 @@
+insert into suser values(100,'Emily','emily@hotmail.com','123');
+
+
+insert into suser values(101,'James','jamesy@hotmail.com','456');
+
+insert into suser values(102,'Rohan','rohan@gmail.com','789');
+
+
+insert into room values(1,1,'AB5') ;
+insert into room values(2,0,'AB2');
+insert into room values(3,0,'AB5');
+
+
+insert into booking values(1000,1,100,'Animania');
+insert into booking values(1001,2,101,'Bamboozled');
+insert into booking values(1002,3,102,'Liar Games');
+
+
+insert into perms values(90,'Emily',17095,1000,100,8.12,2,'2019-10-10','2019-10-15',237);
+insert into perms values(91,'James',17097,1001,101,7.12,2,'2019-11-10','2019-11-15',238);
+insert into perms values(92,'Rohan',17098,1002,102,9.13,2,'2019-11-13','2019-11-14',239);
+
+
+
+insert into complaints values(10,'Room projector not working',100);
+insert into complaints values(11,'Room benches insufficient',101);
+insert into complaints values(12,'Room lighting not working',102);
+
+
+ 
+insert into splreq values(80,'Chart papers','For Banner making',100);
+insert into splreq values(81,'News papers','  ',101);
+ insert into splreq values(82,'Tables',' Infodesk',102);
+
+
+
+insert into admin values(15,'SC','sc.manipaledu@gmail.com','abc','StudentCouncil');
+insert into admin values(16,'SEC','sec.manipaledu@gmail.com','def','ChiefSecurityOffc');
+insert into admin values(17,'ADir','Dir.manipaledu@gmail.com','ghi','AssociateDirector');
+
+
+
+insert into logisreq values(100,10,0,0);
+insert into logisreq values(101,0,10,0);
+insert into logisreq values(102,0,0,1);
+
+
+insert into logisavail values(30,30,30);
+
+insert into prog_check values(1000,1);
+insert into prog_check values(1001,2);
+insert into prog_check values(1002,3);
+
+
+
+insert into req_grant values(100,80);
+ insert into req_grant values(101,81);
+ insert into req_grant values(102,82);
+
+
+
+
+ 
